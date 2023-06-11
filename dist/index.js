@@ -42,7 +42,7 @@ const server = app.listen(port, () => {
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
-        origin: "https://chat-backend-ge69.onrender.com",
+        origin: "https://tamplate.web.app",
         credentials: true,
     },
 });
