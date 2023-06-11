@@ -1929,7 +1929,7 @@
     "@types/whatwg-url" "^8.2.1"
     "whatwg-url" "^11.0.0"
 
-"mongodb@^4.13.0", "mongodb@4.16.0":
+"mongodb@^4.16.0", "mongodb@4.16.0":
   "integrity" "sha512-0EB113Fsucaq1wsY0dOhi1fmZOwFtLOtteQkiqOXGklvWMnSH3g2QS53f0KTP+/6qOkuoXE2JksubSZNmxeI+g=="
   "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.16.0.tgz"
   "version" "4.16.0"
