@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { userSchema } from "../../helper/joiValidation";
 import { User } from "../../model/user";
 import { v4 as uuidv4 } from "uuid";
+import { tokenGenrate } from "./login.service";
 
 export const passwordHash = async (password: string) => {
   const Password = await bcrypt.hash(password, 8);
@@ -28,7 +29,7 @@ export const create = async (req: Request) => {
     } else {
       const data = await User.create({ ...req.body, _id: uuidv4() });
       // const data = await user.save();
-      return data;
+      return {...data, token: tokenGenrate(data._id)};
     }
   } catch (error) {
     return error;
