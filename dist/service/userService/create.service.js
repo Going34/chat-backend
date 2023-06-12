@@ -17,6 +17,7 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const joiValidation_1 = require("../../helper/joiValidation");
 const user_1 = require("../../model/user");
 const uuid_1 = require("uuid");
+const login_service_1 = require("./login.service");
 const passwordHash = (password) => __awaiter(void 0, void 0, void 0, function* () {
     const Password = yield bcryptjs_1.default.hash(password, 8);
     return Password;
@@ -42,7 +43,7 @@ const create = (req) => __awaiter(void 0, void 0, void 0, function* () {
         else {
             const data = yield user_1.User.create(Object.assign(Object.assign({}, req.body), { _id: (0, uuid_1.v4)() }));
             // const data = await user.save();
-            return data;
+            return Object.assign(Object.assign({}, data), { token: (0, login_service_1.tokenGenrate)(data._id) });
         }
     }
     catch (error) {
