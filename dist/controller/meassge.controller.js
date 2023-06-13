@@ -25,7 +25,10 @@ class MessageController {
                 const totalCount = yield message_1.Message.countDocuments({ chat: chatId });
                 const totalPages = Math.ceil(totalCount / pageSize);
                 if (totalCount > 0) {
-                    const messages = yield message_1.Message.find({ chat: chatId })
+                    const messages = yield message_1.Message.find({
+                        chat: chatId,
+                        deleteBy: { $ne: [req.body.user._id] },
+                    })
                         .populate("sender", "name pic email")
                         .populate("chat")
                         .sort({ createdAt: 1 })
@@ -145,6 +148,26 @@ class MessageController {
                 res.status(400).send("error");
             }
         });
+        this.editMeassge = (req, res) => {
+            const messageId = req.params.messageId;
+            const { content } = req.body;
+            if (!messageId) {
+                return res.status(400).send("message id is required");
+            }
+            if (!content) {
+                return res.status(400).send("content is required");
+            }
+            try {
+                const text = message_1.Message.findByIdAndUpdate({ messageId }, { content: content }, { new: true });
+                if (!text) {
+                    return res.status(400).send("message not found");
+                }
+                return res.send(text);
+            }
+            catch (error) {
+                return res.status(400).send("Internal server error");
+            }
+        };
     }
 }
 exports.MessageController = MessageController;

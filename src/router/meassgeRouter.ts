@@ -13,3 +13,5 @@ messageRouter.post('/', message.sendMessage)
 messageRouter.get('/:chatId', message.allMessages)
 
 messageRouter.delete('/:messageId', message.deleteMessage)
+
+messageRouter.patch('/:messageId', message.editMeassge)

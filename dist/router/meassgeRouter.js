@@ -10,3 +10,4 @@ exports.messageRouter.use(jwt_token_verify_1.verifyToken);
 exports.messageRouter.post('/', message.sendMessage);
 exports.messageRouter.get('/:chatId', message.allMessages);
 exports.messageRouter.delete('/:messageId', message.deleteMessage);
+exports.messageRouter.patch('/:messageId', message.editMeassge);
