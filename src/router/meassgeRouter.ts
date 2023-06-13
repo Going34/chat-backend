@@ -8,6 +8,8 @@ const message = new MessageController()
 
 messageRouter.use(verifyToken)
 
-messageRouter.post('/send', message.sendMessage)
+messageRouter.post('/', message.sendMessage)
 
-messageRouter.get('/recive/:chatId', message.allMessages)
+messageRouter.get('/:chatId', message.allMessages)
+
+messageRouter.delete('/:messageId', message.deleteMessage)

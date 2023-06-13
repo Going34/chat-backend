@@ -20,9 +20,8 @@ const rootRouter_1 = require("./router/rootRouter");
 const cors_1 = __importDefault(require("cors"));
 const message_1 = require("./model/message");
 dotenv_1.default.config();
-// const url =
-//   "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
-const url = "mongodb+srv://surinder420:surinder420@cluster0.k4mb4pp.mongodb.net/?retryWrites=true&w=majority";
+const url = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
+//  const url = "mongodb+srv://surinder420:surinder420@cluster0.k4mb4pp.mongodb.net/?retryWrites=true&w=majority"
 const app = (0, express_1.default)();
 const port = 8000;
 app.use((0, cors_1.default)());

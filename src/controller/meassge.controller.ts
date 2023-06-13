@@ -10,7 +10,6 @@ export class MessageController {
   allMessages = async (req: Request, res: Response) => {
     const chatId = req.params.chatId;
     const { page, limit } = req.query;
-    console.log(limit);
 
     try {
       const pageNumber = parseInt(page as string) || 1;
@@ -61,7 +60,7 @@ export class MessageController {
   deleteMessage = async (req: Request, res: Response) => {
     try {
       const deleteMessage = await Message.findByIdAndUpdate(
-        req.body.messageId,
+        req.params.messageId,
         {
           $push: {
             deleteBy: req.body.user._id,
@@ -72,6 +71,7 @@ export class MessageController {
       if (!deleteMessage) {
         return res.send({ success: false, msg: "msg not delete" });
       }
+      return res.send(deleteMessage);
     } catch (error) {
       return res.status(500).send(error);
     }

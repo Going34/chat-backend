@@ -19,7 +19,6 @@ class MessageController {
         this.allMessages = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const chatId = req.params.chatId;
             const { page, limit } = req.query;
-            console.log(limit);
             try {
                 const pageNumber = parseInt(page) || 1;
                 const pageSize = parseInt(limit) || 20;
@@ -66,7 +65,7 @@ class MessageController {
         });
         this.deleteMessage = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const deleteMessage = yield message_1.Message.findByIdAndUpdate(req.body.messageId, {
+                const deleteMessage = yield message_1.Message.findByIdAndUpdate(req.params.messageId, {
                     $push: {
                         deleteBy: req.body.user._id,
                     },
@@ -74,6 +73,7 @@ class MessageController {
                 if (!deleteMessage) {
                     return res.send({ success: false, msg: "msg not delete" });
                 }
+                return res.send(deleteMessage);
             }
             catch (error) {
                 return res.status(500).send(error);
